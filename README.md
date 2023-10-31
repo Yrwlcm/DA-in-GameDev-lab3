@@ -1,14 +1,14 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
-Отчет по лабораторной работе #1 выполнил(а):
-- Иванова Ивана Варкравтовна
-- РИ000024
+Отчет по лабораторной работе #3 выполнил(а):
+- Холстинин Егор Алесеевич
+- РИ-220943
 Отметка о выполнении заданий (заполняется студентом):
 
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
-| Задание 1 | # | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | # | 20 |
+| Задание 1 | * | 60 |
+| Задание 2 | * | 20 |
+| Задание 3 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -35,95 +35,93 @@
 - ✨Magic ✨
 
 ## Цель работы
-Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
+Разработать оптимальный баланс для десяти уровней игры Dragon Picker
 
 ## Задание 1
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### Предложите вариант изменения найденных переменных для 10 уровней в игре. Визуализируйте изменение уровня сложности в таблице. 
 Ход работы:
-- Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
+- При анализе проекта на юнити я нашел следующий набор переменных, которые можно изменить и которые могут повлиять на сложность игры.
 
-```py
+![image](https://github.com/Yrwlcm/DA-in-GameDev-lab3/assets/99079920/a644f0d3-aa79-400e-839b-16da8f9dd3a4)
 
-In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
-import numpy as np
-import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
-
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
-x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
-y = np.array(y)
-
-#Show the effect of a scatter plot
-plt.scatter(x,y)
-
-```
-
-- Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
-
+- Из них я решил изменять только 3 переменные в зависимости от сложности:
+	- Скорость дракона
+	- Границы его перемещения
+	- Время между появлением яиц
+ - Я решил не менять шанс изменить направление движения дракона, так как оно неочевидно влияет на сложность.
+ - Исходя из этого я заполнил таблицу для балансировки сложности.
+ - ![image](https://github.com/Yrwlcm/DA-in-GameDev-lab3/assets/99079920/5ac6dc36-7556-4753-939c-e5116cfd6e47)
+(ссылка на таблицу: https://docs.google.com/spreadsheets/d/1rGUgMVTxPI102JsdLLZYqU_4sxbSlgoUpDoOgzGH05w/edit#gid=0)
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+### Создайте 10 сцен на Unity с изменяющимся уровнем сложности.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+- Далее я создал 10 сцен на юнити меняя эти переменные вручную в соответствии с таблицей для балансировки.
+![image](https://github.com/Yrwlcm/DA-in-GameDev-lab3/assets/99079920/0b37ea2f-6d33-4c46-88f1-12db2248f155)
 
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
 
 ## Задание 3
-### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
+### Решение в 80+ баллов должно заполнять google-таблицу данными из Python. В Python данные также должны быть визуализированы.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+- Пользуясь знаниями из [2 лабораторной работы](https://github.com/Yrwlcm/DA-in-GameDev-lab2) я написал python скрипт который заполняет таблицу балансировки в соответствии с функциями, которые описывают рост переменных. А также строит графики переменных.
 
 ```py
+import gspread
+import numpy as np
+import matplotlib.pyplot as plt
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+gc = gspread.service_account(filename='unitydatascience-400712-fb36790122ff.json')
+sh = gc.open("Week#3 - Баланс в играх")
+speed = 4
+borders = 10
+time_between_drops = 2.0
+chance_change_direction = 1
+
+speed_data = []
+borders_data = []
+time_data = []
+chance_data = []
+
+for i in range(3, 18):
+    # Крайне удобный аргумент value_input_option='USER_ENTERED'
+    # Позволяет не приводить данные к строкам, а писать как есть
+    sh.sheet1.update(('B' + str(i)), speed, value_input_option='USER_ENTERED')
+    sh.sheet1.update(('C' + str(i)), f'{chance_change_direction}%',
+                     value_input_option='USER_ENTERED')
+    sh.sheet1.update(('D' + str(i)), borders, value_input_option='USER_ENTERED')
+    sh.sheet1.update(('E' + str(i)), round(time_between_drops, 1),
+                     value_input_option='USER_ENTERED')
+    print(speed, borders, time_between_drops, chance_change_direction)
+
+    speed_data.append(speed)
+    borders_data.append(borders)
+    time_data.append(time_between_drops)
+    chance_data.append(chance_change_direction)
+
+    speed += 2
+    borders += 1
+    time_between_drops -= 0.1
+
+plt.figure(figsize=(8, 8))
+x = list(range(1, 16))
+
+plt.plot(x, speed_data, label='Скорость')
+plt.plot(x, borders_data, label='Границы')
+plt.plot(x, time_data, label='Время между яйцами')
+plt.plot(x, chance_data, label='Шанс изменить положение')
+
+plt.legend()
+plt.show()
 
 ```
+
+- Результатом работы скрипта является вывод в консоль данных, которые он записал в гугл-таблицу. А так же их графики.
+![image](https://github.com/Yrwlcm/DA-in-GameDev-lab3/assets/99079920/5371e65c-7e6a-40b8-833f-6b5aa0e3e823)
+
 
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
+В результате данной лабораторной работы я научился оптимизировать переменные в играх с помощью таблицы для балансировки. Также я закрепил свои знания по работе с заполнением гугл-таблиц с помощью python скриптов.
 
 | Plugin | README |
 | ------ | ------ |
